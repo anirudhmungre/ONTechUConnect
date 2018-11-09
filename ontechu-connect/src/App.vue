@@ -2,7 +2,7 @@
   <div class="page-container">
     <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary">
-        <span class="md-title">{{ title }}</span>
+        <span class="md-title">ONTechUConnect</span>
       </md-app-toolbar>
 
       <md-app-drawer md-permanent="full">
@@ -34,6 +34,16 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "~vue-material/dist/theme/engine"; 
+
+  @include md-register-theme("default", (
+    primary: #0077CA,
+    accent: #009A88,
+    theme: dark
+  ));
+
+  @import "~vue-material/dist/theme/all";
+
   .md-app {
     height: 100vh;
     border: 1px solid rgba(#000, .12);

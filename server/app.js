@@ -7,16 +7,17 @@ const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const DDoS = require('dddos')
 const http = require('http').Server(app)
-
+const { cors } = require('./components/cors')
 const {
     logger,
     logMiddle
-} = require('./logging')
+} = require('./components/logging')
 
 const api = require('./routes/api')
 
 // Server setup
 app.use(logMiddle)
+app.use(cors)
 app.use(new DDoS({
     maxWeight: 5,
     errorData: {
