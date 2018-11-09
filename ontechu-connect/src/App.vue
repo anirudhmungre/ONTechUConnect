@@ -1,29 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="page-container">
+    <md-app md-waterfall md-mode="fixed">
+      <md-app-toolbar class="md-primary">
+        <span class="md-title">{{ title }}</span>
+      </md-app-toolbar>
+
+      <md-app-drawer md-permanent="full">
+        <md-toolbar class="md-transparent" md-elevation="0">
+          Menu
+        </md-toolbar>
+
+        <md-list>
+          <router-link to="/">
+            <md-list-item>
+              <md-icon>home</md-icon>
+              <span class="md-list-item-text">Home</span>
+            </md-list-item>
+          </router-link>
+          <router-link to="/about">
+            <md-list-item>
+              <md-icon>more</md-icon>
+              <span class="md-list-item-text">About</span>
+            </md-list-item>
+          </router-link>
+        </md-list>
+      </md-app-drawer>
+
+      <md-app-content>
+        <router-view/>
+      </md-app-content>
+    </md-app>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style lang="scss" scoped>
+  .md-app {
+    height: 100vh;
+    border: 1px solid rgba(#000, .12);
   }
-}
+
+   // Demo purposes only
+  .md-drawer {
+    width: 230px;
+    max-width: calc(100vw - 125px);
+  }
 </style>
+
+<script>
+export default {
+  props: ['title'],
+  name: 'ontechu-connect'
+}
+</script>
