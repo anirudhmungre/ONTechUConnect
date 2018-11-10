@@ -37,7 +37,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "~vue-material/dist/theme/engine"; 
+  @import "~vue-material/dist/theme/engine";
 
   @include md-register-theme("default", (
     primary: #0077CA,
