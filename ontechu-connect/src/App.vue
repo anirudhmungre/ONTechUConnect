@@ -2,10 +2,13 @@
   <div class="page-container">
     <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary">
+        <md-button class="md-icon-button" @click="showNavigation=true">
+          <md-icon>menu</md-icon>
+        </md-button>
         <span class="md-title">ONTechUConnect</span>
       </md-app-toolbar>
 
-      <md-app-drawer md-permanent="full">
+      <md-app-drawer md-permanent="full" :md-active.sync="showNavigation">
         <md-toolbar class="md-transparent" md-elevation="0">
           Menu
         </md-toolbar>
@@ -39,17 +42,15 @@
   @include md-register-theme("default", (
     primary: #0077CA,
     accent: #009A88,
-    theme: dark
+    theme: light
   ));
 
   @import "~vue-material/dist/theme/all";
 
   .md-app {
     height: 100vh;
-    border: 1px solid rgba(#000, .12);
   }
 
-   // Demo purposes only
   .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
@@ -59,6 +60,9 @@
 <script>
 export default {
   props: ['title'],
-  name: 'ontechu-connect'
+  name: 'ontechu-connect',
+  data: () => ({
+    showNavigation: false
+  })
 }
 </script>

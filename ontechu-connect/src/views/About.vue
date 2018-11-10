@@ -1,9 +1,17 @@
 <template>
   <div class="about">
-    <h1>About</h1>
-    <button v-on:click="fetch_api">Get data</button>
-    <h2>Response:</h2>
-    <p>{{ message }}</p>
+    <md-card md-with-hover>
+      <md-card-header>
+        <div class="md-title">API Test</div>
+        <div class="md-subhead">Look at this fancy card</div>
+      </md-card-header>
+
+      <md-card-content>
+        <button v-on:click="fetch_api">Get data</button>
+        <h2>Response:</h2>
+        <p>{{ message }}</p>
+      </md-card-content>
+    </md-card>
   </div>
 </template>
 
@@ -23,7 +31,6 @@ export default {
   },
   methods: {
     fetch_api: function() {
-      console.log("clicked");
       request("http://localhost:1337/", (error, response, body) => {
         body = JSON.parse(body)
         this.message = body.message
@@ -31,7 +38,6 @@ export default {
     }
   },
   mounted: () => {
-    console.log("mounted")
   }
 };
 </script>
