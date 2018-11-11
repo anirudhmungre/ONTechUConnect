@@ -1,8 +1,28 @@
 let express = require('express')
-let router =  express.Router()
+let router = express.Router()
+
+const {
+    resp
+} = require('../components/response')
 
 router.get('/', (req, res) => {
-    return res.json({"response":200, "message": "Welcome to the homepage of the api!"})
+    return res.json((new resp())
+        .setError(null)
+        .setResponseCode(200)
+        .setMessage("Welcome to the homepage of the api!")
+        .setData(null)
+    )
+})
+
+router.get('/test', (req, res) => {
+    return res.json((new resp())
+        .setError(null)
+        .setResponseCode(200)
+        .setMessage("You\'ve found the test page!")
+        .setData({
+            "KEY": "VALUE"
+        })
+    )
 })
 
 module.exports = router

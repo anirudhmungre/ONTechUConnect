@@ -31,13 +31,16 @@ export default {
   },
   methods: {
     fetch_api: function() {
-      request("http://localhost:1337/", (error, response, body) => {
-        body = JSON.parse(body)
-        this.message = body.message
+      request("http://localhost:1337/api/test", (error, response, body) => {
+        if (body) {
+          body = JSON.parse(body)
+          this.message = body.message
+        } else {
+          this.message = "error: cannot read response..."
+        }
       })
     }
   },
-  mounted: () => {
-  }
-};
+  mounted: () => {}
+}
 </script>

@@ -7,7 +7,12 @@ const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const DDoS = require('dddos')
 const http = require('http').Server(app)
-const { cors } = require('./components/cors')
+const {
+    resp
+} = require('./components/response')
+const {
+    cors
+} = require('./components/cors')
 const {
     logger,
     logMiddle
@@ -16,8 +21,8 @@ const {
 const api = require('./routes/api')
 
 // Server setup
-app.use(logMiddle)
-app.use(cors)
+app.use(logMiddle())
+app.use(cors())
 app.use(new DDoS({
     maxWeight: 5,
     errorData: {
@@ -43,17 +48,20 @@ app.use('/api', api)
 
 // Default page
 app.get('/', (req, res) => {
-    res.json({
-        "response": 200,
-        "message": "wut lol"
-    })
+    return res.json((new resp())
+        .setError(null)
+        .setResponseCode(200)
+        .setMessage("welcome")
+        .setData(null)
+    )
 })
 app.get('*', (req, res) => {
-    res.json({
-        "response": 404,
-        "error": "Not Found",
-        "message": "looks like you are lost..."
-    })
+    return res.json((new resp())
+        .setError("Page not found...")
+        .setResponseCode(404)
+        .setMessage("looks like you might be lost...")
+        .setData(null)
+    )
 });
 
 // Start server and listen on port
