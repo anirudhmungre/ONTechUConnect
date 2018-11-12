@@ -41,7 +41,7 @@ try {
     logger("Adding routes", 1)
     app.set('port', PORT)
     app.use('/', index)
-    app.use('/api', api)
+    app.use('/v1', api)
 
     http.listen(PORT)
     logger("Listening on port " + PORT, 1)
