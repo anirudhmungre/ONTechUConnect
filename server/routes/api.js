@@ -1,12 +1,19 @@
-let express = require('express')
-let router = express.Router()
+const express = require('express')
 
 const {
     resp
 } = require('../components/response')
 
+const {
+    OurSQL
+} = require('../components/oursql')
+
+let router = express.Router()
+
+let sql = new OurSQL()
+
 router.get('/', (req, res) => {
-    return res.json((new resp())
+    return res.json(resp.make()
         .setError(null)
         .setResponseCode(200)
         .setMessage("Welcome to the homepage of the api!")
@@ -15,7 +22,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/test', (req, res) => {
-    return res.json((new resp())
+    return res.json(resp.make()
         .setError(null)
         .setResponseCode(200)
         .setMessage("You\'ve found the test page!")

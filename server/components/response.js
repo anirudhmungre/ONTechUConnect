@@ -1,10 +1,13 @@
 "use strict"
 class APIResponse {
     constructor() {
-        this.message = ""
-        this.error = ""
-        this.response = 0
-        this.data = {}
+        this.message = null
+        this.error = null
+        this.response = null
+        this.data = null
+    }
+    static make() {
+        return new APIResponse()
     }
     setMessage(message) {
         this.message = message
