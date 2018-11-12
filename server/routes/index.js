@@ -12,12 +12,5 @@ router.get('/', (req, res) => {
         .setMessage("welcome")
     )
 })
-router.get('*', (req, res) => {
-    return res.json(resp.make()
-        .setError("Page not found...")
-        .setResponseCode(404)
-        .setMessage("looks like you might be lost...")
-    )
-});
 
 module.exports = router
