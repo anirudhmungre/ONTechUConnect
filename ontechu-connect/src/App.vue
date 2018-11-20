@@ -2,15 +2,15 @@
   <div class="page-container">
     <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="showNavigation=true">
+        <!-- <md-button class="md-icon-button" @click="showNavigation=true">
           <md-icon>menu</md-icon>
-        </md-button>
+        </md-button> -->
         <span class="md-title">ONTechUConnect</span>
       </md-app-toolbar>
 
-      <md-app-drawer md-permanent="full" :md-active.sync="showNavigation">
+      <md-app-drawer md-permanent="full">
         <md-toolbar class="md-transparent" md-elevation="0">
-          Menu
+          <img src="./assets/UOIT_Logo_2014.svg.png" />
         </md-toolbar>
 
         <md-list>
@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "~vue-material/dist/theme/engine";
 
   @include md-register-theme("default", (
@@ -47,8 +47,18 @@
 
   @import "~vue-material/dist/theme/all";
 
+  * {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+</style>
+
+<style lang="scss" scoped>
   .md-app {
     height: 100vh;
+  }
+
+  .md-app-content {
+    background: #ececec;
   }
 
   .md-drawer {
@@ -62,7 +72,6 @@ export default {
   props: ['title'],
   name: 'ontechu-connect',
   data: () => ({
-    showNavigation: false
   })
 }
 </script>
