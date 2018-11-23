@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <md-card>
+    <md-card style="height: 200vh;" >
       <md-card-header>
         <div class="md-title">API Test</div>
         <div class="md-subhead">Look at this fancy card</div>

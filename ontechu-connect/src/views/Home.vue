@@ -1,29 +1,48 @@
 <template>
-  <div class="home">
-    <md-empty-state
-      md-icon=""
-      md-label=""
-      md-description="">
-      <div class="md-title">Welcome Home</div>
-      <div class="md-subhead">The ONTechU Hub</div>
-      <md-button class="md-primary md-raised" @click="al=true">Get started</md-button>
-    </md-empty-state>
-    <md-dialog-alert
-      :md-active.sync="al"
-      md-title="Sticky Campus!"
-      md-content="Welcome to ontechu" />
+  <div class="md-layout md-gutter">
+    <!-- Left Column 2/3 -->
+    <div class="md-layout-item md-size-66">
+      <md-card>
+        <md-card-header>
+          <div class="md-title">Card</div>
+        </md-card-header>
+        <md-card-content>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        </md-card-content>
+      </md-card>
+      <md-card>
+        <md-card-header>
+          <div class="md-title">Card</div>
+        </md-card-header>
+        <md-card-content>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        </md-card-content>
+      </md-card>
+    </div>
+    <!-- Right Column 1/3 -->
+    <div class="md-layout-item md-size-33">
+      <md-card>
+        <md-card-header>
+          <div class="md-title">Card</div>
+        </md-card-header>
+        <md-card-content>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        </md-card-content>
+      </md-card>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'About',
+  name: "Home",
   data: () => ({
     al: false
   })
-}
+};
 </script>
 
 <style lang="scss" scoped>
+
 
 </style>
