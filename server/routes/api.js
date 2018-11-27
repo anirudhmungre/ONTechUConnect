@@ -1,10 +1,9 @@
 "use strict"
 const express = require('express')
-let router = express.Router()
+const router = express.Router()
 const {resp} = require('../components/response')
-// let router = express.Router()
-let sql = new OurSQL()
-let con = sql.getConnection()
+const sql = new OurSQL()
+const con = sql.getConnection()
 
 router.get('/', (req, res) => {
     return res.json(resp.make()
