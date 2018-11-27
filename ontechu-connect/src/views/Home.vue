@@ -1,29 +1,15 @@
 <template>
-  <div class="home">
-    <md-empty-state
-      md-icon=""
-      md-label=""
-      md-description="">
-      <div class="md-title">Welcome Home</div>
-      <div class="md-subhead">The ONTechU Hub</div>
-      <md-button class="md-primary md-raised" @click="al=true">Get started</md-button>
-    </md-empty-state>
-    <md-dialog-alert
-      :md-active.sync="al"
-      md-title="Sticky Campus!"
-      md-content="Welcome to ontechu" />
-  </div>
+    <v-container fill-height>
+        <v-layout justify-center align-center>
+            <v-flex shrink>
+                <h1>This is Home</h1>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
-export default {
-  name: 'About',
-  data: () => ({
-    al: false
-  })
-}
+    export default {
+        name: 'Home'
+    }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
