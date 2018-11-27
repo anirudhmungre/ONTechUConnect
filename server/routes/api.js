@@ -1,9 +1,10 @@
 "use strict"
 const express = require('express')
 let router = express.Router()
-const {
-    resp
-} = require('../components/response')
+const {resp} = require('../components/response')
+// let router = express.Router()
+let sql = new OurSQL()
+let con = sql.getConnection()
 
 router.get('/', (req, res) => {
     return res.json(resp.make()
@@ -21,6 +22,44 @@ router.get('/test', (req, res) => {
         .setMessage("You\'ve found the test page!")
         .setData({
             "KEY": "VALUE"
+        })
+    )
+})
+
+router.post('/auth', (req, res) => {
+    let post = {
+        sID: req.body.user,
+        pass: req.body.pass
+    }
+    sql.query('SELECT password FROM Student WHERE sID=' + con.escape(post.sID) + ')',
+        (results, fields) => {
+            if (results == post.pass){
+                return res.json(resp.make()
+                .setMessage("Query successful!")
+                .setResponseCode(200)
+                .setData({
+                    auth: true
+                })
+                )
+            }
+            else{
+                return res.json(resp.make()
+                    .setError(error)
+                    .setResponseCode(200)
+                    .setMessage("Incorrect")
+                    .setData({
+                        auth: false
+                    })
+                )
+            }
+        }, (error) => {
+            if (error) {
+                return res.json(resp.make()
+                    .setError(error)
+                    .setResponseCode(500)
+                    .setMessage("There was an error :(")
+                )
+            }
         })
     )
 })
