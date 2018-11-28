@@ -129,14 +129,37 @@
                 <span class="font-weight-light">Connect</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat @click="logout">Logout</v-btn>
-            <v-avatar
-                    size="45"
-                    color="white"
-                    @click="avatarClick"
-            >
-                <v-icon color="primary">person</v-icon>
-            </v-avatar>
+            <v-menu v-model="userMenu" :close-on-content-click="false" :nudge-width="250" offset-x>
+                <v-btn
+                        slot="activator"
+                        outline
+                        fab
+                        dark
+                >
+                    <v-icon>account_circle</v-icon>
+                </v-btn>
+
+                <v-card>
+                    <v-list>
+                        <v-list-tile avatar>
+                            <v-list-tile-avatar>
+                                <v-icon>account_circle</v-icon>
+                            </v-list-tile-avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title color="primary">John Leider</v-list-tile-title>
+                                <v-list-tile-sub-title>Admin</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </v-list>
+                    <v-divider></v-divider>
+                    <v-list>
+                        <v-list-tile>
+                            <v-spacer></v-spacer>
+                            <v-btn flat @click="logout">Logout</v-btn>
+                        </v-list-tile>
+                    </v-list>
+                </v-card>
+            </v-menu>
         </v-toolbar>
         <v-content>
             <router-view name="content"></router-view>
