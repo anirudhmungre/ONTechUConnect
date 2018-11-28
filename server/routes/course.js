@@ -30,11 +30,12 @@ router.post('/student/ecourses', (req, res) => {
 
 router.post('/admin/instructors', (req, res) => {
     let post = {
+        admin: req.body.admin,
         scID: req.body.scid
     }
     sql.query(`SELECT * FROM courseProfs WHERE schoolID= ${con.escape(post.scID)}`,
         (results, fields) => {
-            if (admin){
+            if (post.admin){
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
@@ -89,7 +90,7 @@ router.post('/admin/school/ontechu/course/total', (req, res) => {
     }
     sql.query("SELECT * FROM numStudentsPerCourse",
         (results, fields) => {
-            if (admin){
+            if (post.admin){
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
@@ -120,7 +121,7 @@ router.post('/admin/school/active', (req, res) => {
     }
     sql.query("SELECT * FROM activeSchools",
         (results, fields) => {
-            if (admin) {
+            if (post.admin) {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
@@ -151,7 +152,7 @@ router.post('/admin/allstudents', (req, res) => {
     }
     sql.query("SELECT * FROM allStudents",
         (results, fields) => {
-            if (admin){
+            if (post.admin){
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
@@ -202,7 +203,6 @@ router.post('/student/activecourses', (req, res) => {
 
 router.post('student/depandfac', (req, res) => {
     let post = {
-        admin: req.body.admin,
         scID: req.body.scid
     }
     sql.query(`SELECT * FROM departmentsAndFaculties WHERE schoolID = ${con.escape(post.scID)}`,
@@ -231,7 +231,7 @@ router.post('admin/students/fulltime', (req, res) => {
     }
     sql.query(`SELECT * FROM fulltimeStud WHERE schoolID = ${con.escape(post.scID)}`,
         (results, fields) => {
-            if (admin){
+            if (post.admin){
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
@@ -265,7 +265,7 @@ router.post('admin/school/numprofs', (req, res) => {
         (results_pnum, fields_pnum) => {
             sql.query(`SELECT * FROM allProfs WHERE schoolID = ${con.escape(post.scID)}`,
             (results_pnames, fields_pnames) => {
-                if (admin){
+                if (post.admin){
                     return res.json(resp.make()
                         .setMessage("Query successful Admin!")
                         .setResponseCode(200)
