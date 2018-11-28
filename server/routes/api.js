@@ -47,7 +47,6 @@ router.post('/auth', (req, res) => {
             }
             else{
                 return res.json(resp.make()
-                    .setError(error)
                     .setResponseCode(200)
                     .setMessage("Incorrect")
                     .setData({
