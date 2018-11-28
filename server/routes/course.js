@@ -39,7 +39,7 @@ router.post('/admin/instructors', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData({fields: fields, table: results})
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -201,7 +201,7 @@ router.post('/student/activecourses', (req, res) => {
 })
 
 
-router.post('student/depandfac', (req, res) => {
+router.post('/student/depandfac', (req, res) => {
     let post = {
         scID: req.body.scid
     }
@@ -224,7 +224,7 @@ router.post('student/depandfac', (req, res) => {
 })
 
 
-router.post('admin/students/fulltime', (req, res) => {
+router.post('/admin/students/fulltime', (req, res) => {
     let post = {
         admin: req.body.admin,
         scID: req.body.scid
@@ -256,7 +256,7 @@ router.post('admin/students/fulltime', (req, res) => {
 })
 
 
-router.post('admin/school/numprofs', (req, res) => {
+router.post('/admin/school/numprofs', (req, res) => {
     let post = {
         admin: req.body.admin,
         scID: req.body.scid

@@ -21,7 +21,44 @@
                     <v-data-table :headers="oneHeader" :items="oneData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.prof }}</td>
-                        <td class="text-xs-right">{{ props.item.course }}</td>
+                        <td class="text-xs-centre">{{ props.item.course }}</td>
+                        <td class="text-xs-centre">{{ props.item.schoolID }}</td>
+                      </template>
+                    </v-data-table>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <v-data-table :headers="twoHeader" :items="twoData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.name }}</td>
+                        <td class="text-xs-right">{{ props.item.numStudents }}</td>
+                      </template>
+                    </v-data-table>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <v-data-table :headers="threeHeader" :items="threeData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.name }}</td>
+                      </template>
+                    </v-data-table>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <v-data-table :headers="fourHeader" :items="fourData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.studentID }}</td>
+                        <td class="text-xs-right">{{ props.item.Student }}</td>
+                        <td class="text-xs-right">{{ props.item.School }}</td>
                         <td class="text-xs-right">{{ props.item.schoolID }}</td>
                       </template>
                     </v-data-table>
@@ -31,63 +68,26 @@
               <v-tab-item>
                 <v-card flat>
                   <v-card-text>
-                    <!-- <v-data-table :headers="twoHeader" :items="twoData" class="elevation-1">
-                      <template slot="items" slot-scope="props">
-                        <td>{{ props.item.name }}</td>
-                        <td class="text-xs-right">{{ props.item.numStudents }}</td>
-                      </template>
-                    </v-data-table> -->
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item>
-                <v-card flat>
-                  <v-card-text>
-                    <!-- <v-data-table :headers="threeHeader" :items="threeData" class="elevation-1">
-                      <template slot="items" slot-scope="props">
-                        <td>{{ props.item.name }}</td>
-                      </template>
-                    </v-data-table> -->
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item>
-                <v-card flat>
-                  <v-card-text>
-                    <!-- <v-data-table :headers="fourHeader" :items="fourData" class="elevation-1">
-                      <template slot="items" slot-scope="props">
-                        <td>{{ props.item.studentID }}</td>
-                        <td class="text-xs-right">{{ props.item.Student }}</td>
-                        <td class="text-xs-right">{{ props.item.School }}</td>
-                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
-                      </template>
-                    </v-data-table> -->
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item>
-                <v-card flat>
-                  <v-card-text>
-                    <!-- <v-data-table :headers="fiveHeader" :items="fiveData" class="elevation-1">
+                    <v-data-table :headers="fiveHeader" :items="fiveData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.name }}</td>
                         <td class="text-xs-right">{{ props.item.NumOfClasses }}</td>
                       </template>
-                    </v-data-table> -->
+                    </v-data-table>
                   </v-card-text>
                 </v-card>
               </v-tab-item>
               <v-tab-item>
                 <v-card flat>
                   <v-card-text>
-                    <!-- <v-data-table :headers="sixHeader" :items="sixData" class="elevation-1">
+                    <v-data-table :headers="sixHeader" :items="sixData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.prof }}</td>
                         <td class="text-xs-right">{{ props.item.course }}</td>
                         <td class="text-xs-right">{{ props.item.schoolID }}</td>
                       </template>
-                    </v-data-table> -->
-                    <!-- Number of profs: {{numProfs}} -->
+                    </v-data-table>
+                    Number of profs: {{numProfs}}
                   </v-card-text>
                 </v-card>
               </v-tab-item>
@@ -109,17 +109,17 @@ export default {
       active: null,
       oneHeader: [],
       oneData: [],
-    //   twoHeader: null,
-    //   twoData: null,
-    //   threeHeader: null,
-    //   threeData: null,
-    //   fourHeader: null,
-    //   fourData: null,
-    //   fiveHeader: null,
-    //   fiveData: null,
-    //   sixHeader: null,
-    //   sixData: null,
-    //   numProfs: null
+      twoHeader: [],
+      twoData: [],
+      threeHeader: [],
+      threeData: [],
+      fourHeader: [],
+      fourData: [],
+      fiveHeader: [],
+      fiveData: [],
+      sixHeader: [],
+      sixData: [],
+      numProfs: null
     }
   },
   methods: {
@@ -135,8 +135,7 @@ export default {
         admin: sessionstorage.getItem("admin")  
       })
       .then(response => {
-          console.log(response)
-        this.oneHeader = response.data.data.fields.map(x => ({text: x, value: x}) );
+        this.oneHeader = response.data.data.fields.map(x => ({text: x.name, value: x.name}) );
         this.oneData = response.data.data.table;
       })
       .catch(error => {
@@ -144,73 +143,74 @@ export default {
         console.error(error);
       })
 
-    // axios
-    //   .post("/admin/school/ontechu/course/total", {
-    //     admin: sessionstorage.get("admin")
-    //   })
-    //   .then(response => {
-    //     this.twoHeader = response.data.data.fields;
-    //     this.twoData = response.data.data.table;
-    //   })
-    //   .catch(error => {
-    //     // eslint-disable-next-line
-    //     console.error(error);
-    //   });
+    axios
+      .post("/admin/school/ontechu/course/total", {
+        admin: sessionstorage.getItem("admin")
+      })
+      .then(response => {
+        this.twoHeader = response.data.data.fields;
+        this.twoData = response.data.data.table;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
 
-    // axios
-    //   .post("/admin/school/active", {
-    //     admin: sessionstorage.get("admin")
-    //   })
-    //   .then(response => {
-    //     this.threeHeader = response.data.data.fields;
-    //     this.threeData = response.data.data.table;
-    //   })
-    //   .catch(error => {
-    //     // eslint-disable-next-line
-    //     console.error(error);
-    //   });
+    axios
+      .post("/admin/school/active", {
+        admin: sessionstorage.getItem("admin")
+      })
+      .then(response => {
+        this.threeHeader = response.data.data.fields;
+        this.threeData = response.data.data.table;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
 
-    // axios
-    //   .post("/admin/allstudents", {
-    //     admin: sessionstorage.get("admin")
-    //   })
-    //   .then(response => {
-    //     this.fourHeader = response.data.data.fields;
-    //     this.fourData = response.data.data.table;
-    //   })
-    //   .catch(error => {
-    //     // eslint-disable-next-line
-    //     console.error(error);
-    //   });
+    axios
+      .post("/admin/allstudents", {
+        admin: sessionstorage.getItem("admin")
+      })
+      .then(response => {
+        this.fourHeader = response.data.data.fields;
+        this.fourData = response.data.data.table;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
 
-    // axios
-    //   .post("admin/students/fulltime", {
-    //     admin: sessionstorage.get("admin"),
-    //     scid: sessionstorage.get("scid")
-    //   })
-    //   .then(response => {
-    //     this.fiveHeader = response.data.data.fields;
-    //     this.fiveData = response.data.data.table;
-    //   })
-    //   .catch(error => {
-    //     // eslint-disable-next-line
-    //     console.error(error);
-    //   });
+    axios
+      .post("/admin/students/fulltime", {
+        admin: sessionstorage.getItem("admin"),
+        scid: sessionstorage.getItem("scid")
+      })
+      .then(response => {
+          console.log(response)
+        this.fiveHeader = response.data.data.fields;
+        this.fiveData = response.data.data.table;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
 
-    // axios
-    //   .post("admin/school/numprofs", {
-    //     admin: sessionstorage.get("admin"),
-    //     scid: sessionstorage.get("scid")
-    //   })
-    //   .then(response => {
-    //     this.sixHeader = response.data.data.fields;
-    //     this.sixData = response.data.data.profs;
-    //     this.numProfs = response.data.data.num;
-    //   })
-    //   .catch(error => {
-    //     // eslint-disable-next-line
-    //     console.error(error);
-    //   });
+    axios
+      .post("/admin/school/numprofs", {
+        admin: sessionstorage.getItem("admin"),
+        scid: sessionstorage.getItem("scid")
+      })
+      .then(response => {
+        this.sixHeader = response.data.data.fields;
+        this.sixData = response.data.data.profs;
+        this.numProfs = response.data.data.num;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
   }
 }
 </script>
