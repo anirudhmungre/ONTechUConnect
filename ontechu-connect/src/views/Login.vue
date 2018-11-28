@@ -3,12 +3,12 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
-                    <v-flex d-flex xs3>
+                    <v-flex d-flex xs6 md5 lg3 xl2>
                         <v-card class="elevation-3">
                             <v-card-text>
                                 <v-form>
                                     <v-container grid-list-xs pa-5>
-                                        <v-flex>
+                                        <v-flex xs-8>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="logo-main"
                                                  viewBox="0 0 300 114">
                                                 <title>uoit-logo</title>
@@ -123,8 +123,8 @@
                                                     @click:append="hidePassword = !hidePassword"
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex row justify-row-end>
-                                            <v-btn color="primary">Login</v-btn>
+                                        <v-flex row class="text-xs-right">
+                                            <v-btn color="primary" @click="doLogin">Login</v-btn>
                                         </v-flex>
                                     </v-container>
                                 </v-form>
@@ -134,15 +134,46 @@
                 </v-layout>
             </v-container>
         </v-content>
+        <v-snackbar
+                v-model="snackbar"
+                color="error"
+                :timeout="6000"
+        >
+            INVALID LOGIN
+            <v-btn
+                    dark
+                    flat
+                    @click="snackbar = false"
+            >
+                Close
+            </v-btn>
+        </v-snackbar>
     </v-app>
 </template>
 
 <script>
+    import axios from 'axios'
+    import sha512 from 'sha512'
     export default {
         name: 'Login',
         data: () => ({
+            snackbar: null,
             password: '',
             hidePassword: false
-        })
+        }),
+        methods: {
+            doLogin() {
+                console.log(sha512(this.password))
+                axios
+                    .get('/auth')
+                    .then((response) => {
+                        console.log(response)
+                    })
+                    .catch((error) => {
+                        console.error(error)
+                    })
+                this.snackbar = true
+            }
+        }
     }
 </script>
