@@ -29,6 +29,13 @@ export default new Router({
                         default: () => import('./views/Dashboard.vue'),
                         content: () => import('./views/About.vue')
                     }
+                },
+                {
+                    path: 'admin',
+                    components: {
+                        default: () => import('./views/Dashboard.vue'),
+                        content: () => import('./views/Admin.vue')
+                    }
                 }
             ]
         },
