@@ -118,22 +118,7 @@
                                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
-                            <v-list-group v-if="admin" prepend-icon="supervised_user_circle" no-action>
-                                <v-list-tile slot="activator">
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>Admin</v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <v-list-tile @click="">
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>Thing</v-list-tile-title>
-                                    </v-list-tile-content>
-                                    <v-list-tile-action>
-                                        <v-icon>add</v-icon>
-                                    </v-list-tile-action>
-                                </v-list-tile>
-                            </v-list-group>
-                        </v-list>
+                    </v-list>
                 </v-flex>
             </v-layout>
         </v-navigation-drawer>
@@ -144,6 +129,7 @@
                 <span class="font-weight-light">Connect</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
+            <v-btn flat @click="logout">Logout</v-btn>
             <v-avatar
                     size="45"
                     color="white"
@@ -168,7 +154,8 @@
             admin: false,
             items: [
                 { icon: 'home', title: 'Home', url: '/dashboard/home', admin: false },
-                { icon: 'person', title: 'User', url: '/dashboard/about', admin: false }
+                { icon: 'person', title: 'User', url: '/dashboard/about', admin: false },
+                { icon: 'supervisor_account', title: 'Admin', url: '/dashboard/admin', admin: true }
             ]
         }),
         mounted() {
@@ -181,6 +168,9 @@
         methods: {
             avatarClick() {
                 console.log("THING")
+            },
+            logout() {
+                this.$router.push('/logout')
             }
         }
     }
