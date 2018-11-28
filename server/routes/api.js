@@ -27,6 +27,7 @@ router.get('/test', (req, res) => {
 })
 
 router.post('/auth', (req, res) => {
+    con.connect()
     let post = {
         sID: req.body.user,
         pass: req.body.pass

@@ -1,14 +1,12 @@
 "use strict"
 const mysql = require('mysql')
 const { logger } = require('./logging')
-const {
-    dbconfig
-} = require('./databaseCred.hide')
+const { dbconfig } = require('./databaseCred.hide')
 
 class OurSQL {
     constructor() {
         this.connection = mysql.createConnection({
-            server: dbconfig.server,
+            host: dbconfig.server,
             port: dbconfig.port,
             user: dbconfig.username,
             password: dbconfig.password,
@@ -19,7 +17,7 @@ class OurSQL {
         })
         logger("Created db connection", 1)
     }
-    establishConnection(callback) {
+    establishConnection() {
         logger("Opening db connection", 1)
         this.connection.connect(function (error) {
             if (error) {
@@ -38,10 +36,21 @@ class OurSQL {
 
         })
     }
-    query(sqlStatement, inserts, callback) {
+    query(sqlStatement, inserts, callback, errCallback) {
         return this.connection.query(sqlStatement, inserts, function (error, results, fields) {
             if (error) {
                 logger("Error querrying the db: " + JSON.stringify(error), 3)
+                errCallback(error)
+            } else {
+                callback(results, fields)
+            }
+        })
+    }
+    query(sqlStatement, callback, errCallback) {
+        return this.connection.query(sqlStatement, function (error, results, fields) {
+            if (error) {
+                logger("Error querrying the db: " + JSON.stringify(error), 3)
+                errCallback(error)
             } else {
                 callback(results, fields)
             }
