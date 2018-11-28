@@ -8,11 +8,11 @@ const {
 class OurSQL {
     constructor() {
         this.connection = mysql.createConnection({
-            host: dbconfig.host,
+            server: dbconfig.server,
             port: dbconfig.port,
             user: dbconfig.username,
             password: dbconfig.password,
-            database: dbconfig.databse
+            database: dbconfig.database
         })
         this.connection.on('error', function(error) {
             logger("A db Error has occured: " + JSON.stringify(error), 3)
