@@ -30,7 +30,7 @@ router.post('/student/ecourses', (req, res) => {
 
 router.post('/admin/instructors', (req, res) => {
     let post = {
-        scID = req.body.scid
+        scID: req.body.scid
     }
     sql.query(`SELECT * FROM courseProfs WHERE schoolID= ${con.escape(post.scID)}`,
         (results, fields) => {
