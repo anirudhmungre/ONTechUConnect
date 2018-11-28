@@ -16,8 +16,15 @@ export default new Router({
             },
             children: [
                 {
-                    path: '/about',
-                    name: 'about',
+                    path: 'home',
+                    name: 'home',
+                    components: {
+                        default: () => import('./views/Dashboard.vue'),
+                        content: () => import('./views/Home.vue')
+                    }
+                },
+                {
+                    path: 'about',
                     components: {
                         default: () => import('./views/Dashboard.vue'),
                         content: () => import('./views/About.vue')

@@ -11,6 +11,6 @@ axios.defaults.baseURL = 'https://api.ontechuconnect.tk/v1'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app')

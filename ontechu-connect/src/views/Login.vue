@@ -183,6 +183,7 @@
                             sessionstorage.clear()
                             sessionstorage.setItem('admin', res.admin)
                             sessionstorage.setItem('sid', this.username)
+                            sessionstorage.setItem('scid', res.scid)
                             sessionstorage.setItem('name', res.name)
                             this.$router.push('/dashboard')
                         } else {

@@ -1,7 +1,11 @@
 <template>
-    <div class="about">
-        <h1>This is an about page</h1>
-    </div>
+    <v-container fill-height>
+        <v-layout justify-center align-center>
+            <v-flex shrink>
+                <h1>About</h1>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
