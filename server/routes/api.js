@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const {resp} = require('../components/response')
+const { OurSQL } = require('../components/oursql')
 const sql = new OurSQL()
 const con = sql.getConnection()
 
@@ -32,6 +33,7 @@ router.post('/auth', (req, res) => {
     }
     sql.query('SELECT password FROM Student WHERE sID=' + con.escape(post.sID) + ')',
         (result, fields) => {
+            console.log(result)
             if (result[0].password == post.pass){
                 return res.json(resp.make()
                 .setMessage("Query successful!")
