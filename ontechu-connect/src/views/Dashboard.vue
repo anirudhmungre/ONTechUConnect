@@ -130,23 +130,17 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-menu v-model="userMenu" :close-on-content-click="false" :nudge-width="250" offset-x>
-                <v-btn
-                        slot="activator"
-                        outline
-                        fab
-                        dark
-                >
-                    <v-icon>account_circle</v-icon>
+                <v-btn slot="activator" depressed fab color="accent">
+                    <v-icon x-large>account_circle</v-icon>
                 </v-btn>
-
                 <v-card>
                     <v-list>
                         <v-list-tile avatar>
                             <v-list-tile-avatar>
-                                <v-icon>account_circle</v-icon>
+                                <v-icon x-large >account_circle</v-icon>
                             </v-list-tile-avatar>
                             <v-list-tile-content>
-                                <v-list-tile-title color="primary">John Leider</v-list-tile-title>
+                                <v-list-tile-title color="primary" v-text="name"></v-list-tile-title>
                                 <v-list-tile-sub-title>Admin</v-list-tile-sub-title>
                             </v-list-tile-content>
                         </v-list-tile>
@@ -175,6 +169,7 @@
         data: () => ({
             drawer: null,
             admin: false,
+            name: 'Ratmiro',
             items: [
                 { icon: 'home', title: 'Home', url: '/dashboard/home', admin: false },
                 { icon: 'person', title: 'User', url: '/dashboard/about', admin: false },
