@@ -6,7 +6,7 @@ let router = express.Router()
 let sql = new OurSQL()
 let con = sql.getConnection()
 
-router.post('/enrolled', (req, res) => {
+router.post('/student/ecourses', (req, res) => {
     let post = {
         sID: req.body.sid 
     }
@@ -28,7 +28,7 @@ router.post('/enrolled', (req, res) => {
     })
 })
 
-router.post('/instructors', (req, res) => {
+router.post('/admin/instructors', (req, res) => {
     let post = {
         scID = req.body.scid
     }
@@ -50,7 +50,7 @@ router.post('/instructors', (req, res) => {
     })
 })
 
-router.post('/depCourses', (req, res) => {
+router.post('/student/depcourses', (req, res) => {
     let post = {
         scID: req.body.scid,
         depID: req.body.depid
@@ -73,8 +73,8 @@ router.post('/depCourses', (req, res) => {
     })
 })
 
-// Admin One
-router.post('/numStudentsCourseONTechU', (req, res) => {
+
+router.post('/admin/school/ontechu/course/total', (req, res) => {
     let post = {
         admin: req.body.admin,
     }
@@ -103,4 +103,29 @@ router.post('/numStudentsCourseONTechU', (req, res) => {
                 )
             }
     })
+})
+
+
+router.post('/admin/active/schools', (req, res) => {
+
+})
+
+router.post('/admin/allstudents', (req, res) => {
+
+})
+
+router.post('/student/activecourses', (res, res) => {
+
+})
+
+router.post('student/depandfac', (req, res) => {
+
+})
+
+router.post('admin/students/fulltime', (req, res) => {
+
+})
+
+router.post('admin/school/numprofs', (req, res) => {
+
 })
