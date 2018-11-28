@@ -170,9 +170,11 @@
             drawer: null,
             admin: false,
             name: 'Ratmiro',
+            userMenu: null,
             items: [
                 { icon: 'home', title: 'Home', url: '/dashboard/home', admin: false },
-                { icon: 'person', title: 'User', url: '/dashboard/about', admin: false },
+                { icon: 'perm_contact_calendar', title: 'Enrolled Courses', url: '/dashboard/courses/enrolled', admin: false },
+                { icon: 'class', title: 'Course Lookup', url: '/dashboard/courses/lookup', admin: false },
                 { icon: 'supervisor_account', title: 'Admin', url: '/dashboard/admin', admin: true }
             ]
         }),
@@ -184,9 +186,6 @@
             }
         },
         methods: {
-            avatarClick() {
-                console.log("THING")
-            },
             logout() {
                 this.$router.push('/logout')
             }
