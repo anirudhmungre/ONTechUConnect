@@ -185,7 +185,7 @@
                             sessionstorage.setItem('sid', this.username)
                             sessionstorage.setItem('scid', res.scid)
                             sessionstorage.setItem('name', res.name)
-                            this.$router.push('/dashboard')
+                            this.$router.push('/dashboard/home')
                         } else {
                             this.snackbar = true
                         }
