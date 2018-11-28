@@ -36,7 +36,7 @@ router.post('/auth', (req, res) => {
     sql.query('SELECT password FROM Student WHERE sID=' + con.escape(post.sID),
         (result, fields) => {
             console.log(result)
-            if (result[0].password == post.pass){
+            if (result[0].password === post.pass){
                 return res.json(resp.make()
                 .setMessage("Query successful!")
                 .setResponseCode(200)
