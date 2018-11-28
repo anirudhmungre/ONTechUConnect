@@ -5,14 +5,90 @@
         <v-card>
           <v-toolbar color="accent" dark>
             <v-tabs v-model="active" color="accent" dark slider-color="primary">
-              <v-tab v-for="n in 3" :key="n" ripple>Item {{ n }}</v-tab>
+              <v-tab ripple>Instructors</v-tab>
+              <v-tab ripple>Number of Students Per Course</v-tab>
+              <v-tab ripple>Active Schools</v-tab>
+              <v-tab ripple>All Students</v-tab>
+              <v-tab ripple>Fulltime Students</v-tab>
+              <v-tab ripple>Number of Profs</v-tab>
             </v-tabs>
           </v-toolbar>
           <v-card-text>
             <v-tabs-items v-model="active">
-              <v-tab-item v-for="n in 3" :key="n">
+              <v-tab-item>
                 <v-card flat>
-                  <v-card-text>{{ text }}</v-card-text>
+                  <v-card-text>
+                    <v-data-table :headers="oneHeader" :items="oneData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.prof }}</td>
+                        <td class="text-xs-right">{{ props.item.course }}</td>
+                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
+                      </template>
+                    </v-data-table>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <!-- <v-data-table :headers="twoHeader" :items="twoData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.name }}</td>
+                        <td class="text-xs-right">{{ props.item.numStudents }}</td>
+                      </template>
+                    </v-data-table> -->
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <!-- <v-data-table :headers="threeHeader" :items="threeData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.name }}</td>
+                      </template>
+                    </v-data-table> -->
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <!-- <v-data-table :headers="fourHeader" :items="fourData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.studentID }}</td>
+                        <td class="text-xs-right">{{ props.item.Student }}</td>
+                        <td class="text-xs-right">{{ props.item.School }}</td>
+                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
+                      </template>
+                    </v-data-table> -->
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <!-- <v-data-table :headers="fiveHeader" :items="fiveData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.name }}</td>
+                        <td class="text-xs-right">{{ props.item.NumOfClasses }}</td>
+                      </template>
+                    </v-data-table> -->
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>
+                    <!-- <v-data-table :headers="sixHeader" :items="sixData" class="elevation-1">
+                      <template slot="items" slot-scope="props">
+                        <td>{{ props.item.prof }}</td>
+                        <td class="text-xs-right">{{ props.item.course }}</td>
+                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
+                      </template>
+                    </v-data-table> -->
+                    <!-- Number of profs: {{numProfs}} -->
+                  </v-card-text>
                 </v-card>
               </v-tab-item>
             </v-tabs-items>
@@ -24,19 +100,116 @@
 </template>
 
 <script>
+import axios from "axios"
+import sessionstorage from "sessionstorage"
+
 export default {
   data() {
     return {
       active: null,
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    };
+      oneHeader: [],
+      oneData: [],
+    //   twoHeader: null,
+    //   twoData: null,
+    //   threeHeader: null,
+    //   threeData: null,
+    //   fourHeader: null,
+    //   fourData: null,
+    //   fiveHeader: null,
+    //   fiveData: null,
+    //   sixHeader: null,
+    //   sixData: null,
+    //   numProfs: null
+    }
   },
   methods: {
     next() {
       const active = parseInt(this.active);
       this.active = active < 2 ? active + 1 : 0;
     }
+  },
+  mounted() {
+    axios
+      .post("/admin/instructors", {
+        scid: sessionstorage.getItem("scid")
+      })
+      .then(response => {
+          console.log(response)
+        this.oneHeader = response.data.data.fields;
+        this.oneData = response.data.data.table;
+      })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.error(error);
+      })
+
+    // axios
+    //   .post("/admin/school/ontechu/course/total", {
+    //     admin: sessionstorage.get("admin")
+    //   })
+    //   .then(response => {
+    //     this.twoHeader = response.data.data.fields;
+    //     this.twoData = response.data.data.table;
+    //   })
+    //   .catch(error => {
+    //     // eslint-disable-next-line
+    //     console.error(error);
+    //   });
+
+    // axios
+    //   .post("/admin/school/active", {
+    //     admin: sessionstorage.get("admin")
+    //   })
+    //   .then(response => {
+    //     this.threeHeader = response.data.data.fields;
+    //     this.threeData = response.data.data.table;
+    //   })
+    //   .catch(error => {
+    //     // eslint-disable-next-line
+    //     console.error(error);
+    //   });
+
+    // axios
+    //   .post("/admin/allstudents", {
+    //     admin: sessionstorage.get("admin")
+    //   })
+    //   .then(response => {
+    //     this.fourHeader = response.data.data.fields;
+    //     this.fourData = response.data.data.table;
+    //   })
+    //   .catch(error => {
+    //     // eslint-disable-next-line
+    //     console.error(error);
+    //   });
+
+    // axios
+    //   .post("admin/students/fulltime", {
+    //     admin: sessionstorage.get("admin"),
+    //     scid: sessionstorage.get("scid")
+    //   })
+    //   .then(response => {
+    //     this.fiveHeader = response.data.data.fields;
+    //     this.fiveData = response.data.data.table;
+    //   })
+    //   .catch(error => {
+    //     // eslint-disable-next-line
+    //     console.error(error);
+    //   });
+
+    // axios
+    //   .post("admin/school/numprofs", {
+    //     admin: sessionstorage.get("admin"),
+    //     scid: sessionstorage.get("scid")
+    //   })
+    //   .then(response => {
+    //     this.sixHeader = response.data.data.fields;
+    //     this.sixData = response.data.data.profs;
+    //     this.numProfs = response.data.data.num;
+    //   })
+    //   .catch(error => {
+    //     // eslint-disable-next-line
+    //     console.error(error);
+    //   });
   }
-};
+}
 </script>

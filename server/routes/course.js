@@ -38,7 +38,7 @@ router.post('/admin/instructors', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData(results)
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -93,7 +93,7 @@ router.post('/admin/school/ontechu/course/total', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData(results)
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -124,7 +124,7 @@ router.post('/admin/school/active', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData(results)
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -155,7 +155,7 @@ router.post('/admin/allstudents', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData(results)
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -235,7 +235,7 @@ router.post('admin/students/fulltime', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData(results)
+                    .setData({fields, table: results})
                 )
             }
             else{
@@ -269,8 +269,9 @@ router.post('admin/school/numprofs', (req, res) => {
                     return res.json(resp.make()
                         .setMessage("Query successful Admin!")
                         .setResponseCode(200)
-                        .setData({num: results_pnum[0].NumInstructors,
-                                  profs: results_pnames})
+                        .setData({fields,
+                            num: results_pnum[0].NumInstructors,
+                            profs: results_pnames})
                     )
                 }
                 else{
