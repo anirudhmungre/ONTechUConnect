@@ -3,10 +3,8 @@ const express = require('express')
 const router = express.Router()
 const {resp} = require('../components/response')
 const { OurSQL } = require('../components/oursql')
-const course = require('./course')
 const sql = new OurSQL()
 const con = sql.getConnection()
-router.use('/c', course)
 
 router.get('/', (req, res) => {
     return res.json(resp.make()

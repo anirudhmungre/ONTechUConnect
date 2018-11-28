@@ -176,7 +176,7 @@ router.post('/admin/allstudents', (req, res) => {
 })
 
 
-router.post('/student/activecourses', (res, res) => {
+router.post('/student/activecourses', (req, res) => {
     let post = {
         admin: req.body.admin,
         scID: req.body.scid
@@ -299,3 +299,5 @@ router.post('admin/school/numprofs', (req, res) => {
             }
     })
 })
+
+module.exports = router

@@ -22,6 +22,7 @@ const {
 logger("Loading routes", 1)
 const index = require('./routes/index')
 const api = require('./routes/api')
+const course = require('./routes/course')
 
 logger("Setting up middleware", 1)
 app.use(logMiddle())
@@ -50,6 +51,7 @@ try {
     app.set('port', PORT)
     app.use('/', index)
     app.use('/v1', api)
+    app.use('/v1', course)
     http.listen(PORT)
     logger("Listening on port " + PORT, 1)
     logger("Server started successfully", 1)
