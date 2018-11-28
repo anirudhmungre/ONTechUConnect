@@ -30,7 +30,7 @@ app.use(logMiddle())
 app.use(cors())
 
 app.use(new DDoS({
-    maxWeight: 5,
+    maxWeight: 20,
     errorData: {
         "response": 429,
         "message": "GEEZ, that\'s a few too many requests... slow down."

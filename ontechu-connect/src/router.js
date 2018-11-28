@@ -24,10 +24,17 @@ export default new Router({
                     }
                 },
                 {
-                    path: 'about',
+                    path: 'courses/enrolled',
                     components: {
                         default: () => import('./views/Dashboard.vue'),
-                        content: () => import('./views/About.vue')
+                        content: () => import('./views/Enrolled.vue')
+                    }
+                },
+                {
+                    path: 'courses/lookup',
+                    components: {
+                        default: () => import('./views/Dashboard.vue'),
+                        content: () => import('./views/Lookup.vue')
                     }
                 },
                 {
