@@ -108,23 +108,8 @@
                                             <span>ONTechU</span>
                                             <span class="font-weight-light">Connect</span>
                                         </v-flex>
-                                        <v-flex>
-                                            <v-text-field v-model="username" id="username" name="username" label="Student ID"
-                                                          type="text"></v-text-field>
-                                        </v-flex>
-                                        <v-flex>
-                                            <v-text-field
-                                                    v-model="password"
-                                                    :append-icon="hidePassword ? 'visibility_off' : 'visibility'"
-                                                    :type="hidePassword ? 'text' : 'password'"
-                                                    name="password"
-                                                    label="Password"
-                                                    hint="Network Password"
-                                                    @click:append="hidePassword = !hidePassword"
-                                            ></v-text-field>
-                                        </v-flex>
-                                        <v-flex row class="text-xs-right">
-                                            <v-btn color="primary" @click="doLogin">Login</v-btn>
+                                        <v-flex class="headline text-uppercase text-xs-center">
+                                            <span>You are now being logged out...</span>
                                         </v-flex>
                                     </v-container>
                                 </v-form>
@@ -134,65 +119,25 @@
                 </v-layout>
             </v-container>
         </v-content>
-        <v-snackbar
-                v-model="snackbar"
-                color="error"
-                :timeout="6000"
-        >
-            INVALID LOGIN
-            <v-btn
-                    dark
-                    flat
-                    @click="snackbar = false"
-            >
-                Close
-            </v-btn>
-        </v-snackbar>
     </v-app>
 </template>
 
 <script>
-    import axios from 'axios'
-    import sha512 from 'sha512'
     import sessionstorage from 'sessionstorage'
 
     export default {
-        name: 'Login',
+        name: 'Logout',
         data: () => ({
-            snackbar: null,
-            password: '',
-            username: '',
-            hidePassword: false
         }),
         mounted() {
+            let context = this
             if (sessionstorage.getItem('sid')) {
-                this.$router.push('/dashboard')
-            }
-        },
-        methods: {
-            doLogin() {
-                let encPass = sha512(this.password).toString('hex')
-                axios
-                    .post('/auth', {
-                        user: this.username,
-                        pass: encPass
-                    })
-                    .then((response) => {
-                        let res = response.data.data
-                        if (res.auth) {
-                            sessionstorage.clear()
-                            sessionstorage.setItem('admin', res.admin)
-                            sessionstorage.setItem('sid', this.username)
-                            sessionstorage.setItem('name', res.name)
-                            this.$router.push('/dashboard')
-                        } else {
-                            this.snackbar = true
-                        }
-                    })
-                    .catch((error) => {
-                        // eslint-disable-next-line
-                        console.error(error)
-                    })
+                sessionstorage.clear()
+                setTimeout(function() {
+                    context.$router.push('/login')
+                }, 1500)
+            } else {
+                this.$router.push('/login')
             }
         }
     }
