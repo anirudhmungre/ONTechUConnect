@@ -33,7 +33,7 @@ router.post('/auth', (req, res) => {
         pass: req.body.pass
     }
     console.log(req.body)
-    sql.query('SELECT password FROM Student WHERE sID=' + con.escape(post.sID),
+    sql.query('SELECT password, admin FROM Student WHERE sID=' + con.escape(post.sID),
         (result, fields) => {
             console.log(result)
             if (result[0].password === post.pass){
@@ -41,7 +41,8 @@ router.post('/auth', (req, res) => {
                 .setMessage("Query successful!")
                 .setResponseCode(200)
                 .setData({
-                    auth: true
+                    auth: true,
+                    admin: (result[0].admin ? true : false)
                 })
                 )
             }
