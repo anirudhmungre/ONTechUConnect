@@ -39,7 +39,7 @@ router.post('/admin/instructors', (req, res) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Admin!")
                     .setResponseCode(200)
-                    .setData({fields, table: results})
+                    .setData({fields: fields, table: results})
                 )
             }
             else{

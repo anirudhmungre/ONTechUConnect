@@ -131,11 +131,12 @@ export default {
   mounted() {
     axios
       .post("/admin/instructors", {
-        scid: sessionstorage.getItem("scid")
+        scid: sessionstorage.getItem("scid"),
+        admin: sessionstorage.getItem("admin")  
       })
       .then(response => {
           console.log(response)
-        this.oneHeader = response.data.data.fields;
+        this.oneHeader = response.data.data.fields.map(x => ({text: x, value: x}) );
         this.oneData = response.data.data.table;
       })
       .catch(error => {
