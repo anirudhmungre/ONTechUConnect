@@ -6,7 +6,7 @@
           <v-flex>
             <v-card class="mb-3">
               <v-toolbar dark color="accent">
-                <v-toolbar-title class="text-uppercase">Enrolled Courses: {{ props.item.Student_Name }}</v-toolbar-title>
+                <v-toolbar-title class="text-uppercase">Enrolled Courses: {{ name }}</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-slide-y-transition>
