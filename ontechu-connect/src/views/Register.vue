@@ -3,7 +3,7 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
-                    <v-flex d-flex xs6 md5 lg3 xl2>
+                    <v-flex d-flex xs10>
                         <v-card class="elevation-3">
                             <v-card-text>
                                 <v-form>
@@ -21,11 +21,10 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import sessionstorage from 'sessionstorage'
 
     export default {
-        name: 'RegisterQueueWaitlist',
+        name: 'RegisterCourses',
         data: () => ({ }),
         mounted() {
             if (!sessionstorage.getItem('sid')) {
