@@ -6,7 +6,7 @@
           <v-flex>
             <v-card class="mb-3">
               <v-toolbar dark color="accent">
-                <v-toolbar-title class="text-uppercase">Enrolled Courses</v-toolbar-title>
+                <v-toolbar-title class="text-uppercase">Enrolled Courses: {{ props.item.Student_Name }}</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-slide-y-transition>
@@ -15,16 +15,12 @@
                     <v-data-table :headers="header" :items="data" class="elevation-1" hide-actions>
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.sID }}</td>
-                        <td class="text-xs-centre">{{ props.item.Student_Name }}</td>
-                        <td class="text-xs-centre">{{ props.item.email }}</td>
-                        <td class="text-xs-centre">{{ props.item.ceID }}</td>
-                        <td class="text-xs-centre">{{ props.item.nName }}</td>
-                        <td class="text-xs-centre">{{ props.item.cCode }}</td>
-                        <td class="text-xs-centre">{{ props.item.Course_Name }}</td>
+                        <td class="text-xs-centre">{{ props.item.Department }}</td>
+                        <td class="text-xs-centre">{{ props.item.CourseCode }}</td>
+                        <td class="text-xs-centre">{{ props.item.Name }}</td>
                         <td class="text-xs-centre">{{ props.item.type }}</td>
                         <td class="text-xs-centre">{{ props.item.timeSlot }}</td>
                         <td class="text-xs-centre">{{ props.item.location }}</td>
-                        <td class="text-xs-centre">{{ props.item.schoolID }}</td>
                       </template>
                     </v-data-table>
                   </v-layout>
