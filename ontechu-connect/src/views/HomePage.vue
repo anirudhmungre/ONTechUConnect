@@ -1,8 +1,9 @@
 <template>
-
+    <div class="homepage"></div>
 </template>
 
 <script>
+    import sessionstorage from 'sessionstorage'
     export default {
         name: "HomePage",
         data: () => ({}),
@@ -15,8 +16,3 @@
         }
     };
 </script>
-
-<style lang="scss" scoped>
-
-
-</style>
