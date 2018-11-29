@@ -229,7 +229,7 @@ router.post('/admin/students/fulltime', (req, res) => {
         admin: req.body.admin,
         scID: req.body.scid
     }
-    sql.query(`SELECT * FROM fulltimeStud WHERE schoolID = ${con.escape(post.scID)}`,
+    sql.query(`SELECT * FROM fulltimeStud`,
         (results, fields) => {
             if (post.admin){
                 return res.json(resp.make()
