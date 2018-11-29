@@ -10,7 +10,7 @@ router.post('/student/ecourses', (req, res) => {
     let post = {
         sID: req.body.sid 
     }
-    sql.query(`SELECT * FROM coursesEnrolled WHERE sID= ${con.escape(post.sID)}`,
+    sql.query(`SELECT Department, CourseCode, Name, type, timeSlot, location FROM coursesEnrolled WHERE sID= ${con.escape(post.sID)}`,
         (results, fields) => {
             return res.json(resp.make()
                 .setMessage("Query successful!")

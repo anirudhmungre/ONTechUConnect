@@ -14,7 +14,6 @@
                   <v-layout row>
                     <v-data-table :headers="header" :items="data" class="elevation-1" hide-actions>
                       <template slot="items" slot-scope="props">
-                        <td>{{ props.item.sID }}</td>
                         <td class="text-xs-centre">{{ props.item.Department }}</td>
                         <td class="text-xs-centre">{{ props.item.CourseCode }}</td>
                         <td class="text-xs-centre">{{ props.item.Name }}</td>
