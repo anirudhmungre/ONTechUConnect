@@ -147,9 +147,6 @@ import sessionstorage from "sessionstorage"
                 context.depAndFaculty.forEach(element => {
                   context.faculties.push(element.faculty)
                 })
-                console.log(context.departments)
-                console.log(context.faculties)
-                console.log(context.depAndFaculty)
             })
             .catch(error => {
                 // eslint-disable-next-line
@@ -167,7 +164,6 @@ import sessionstorage from "sessionstorage"
 
             })
             .then(response => {
-              console.log(response.data.data)
                 response.data.data.forEach(element => {
                     context.courses.push(element.name)
                 })
@@ -178,7 +174,6 @@ import sessionstorage from "sessionstorage"
             })
         },
         loadDepartments() {
-          console.log("fuck")
           this.e1 = 2
           for (let i = 0; i < this.depAndFaculty.length; i++) {
             if(this.depAndFaculty[i].faculty ===  this.selfaculty) {
