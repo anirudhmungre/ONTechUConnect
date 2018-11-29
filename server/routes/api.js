@@ -33,7 +33,7 @@ router.post('/auth', (req, res) => {
         pass: req.body.pass
     }
     console.log(req.body)
-    sql.query('SELECT password, admin, schoolID FROM Student WHERE sID=' + con.escape(post.sID),
+    sql.query('SELECT password, admin, schoolID, name FROM Student WHERE sID=' + con.escape(post.sID),
         (results, fields) => {
             console.log(results)
             if (results[0].password === post.pass){
@@ -43,7 +43,8 @@ router.post('/auth', (req, res) => {
                 .setData({
                     auth: true,
                     admin: (results[0].admin ? true : false),
-                    scid: results[0].schoolID
+                    scid: results[0].schoolID,
+                    name: results[0].name
                 })
                 )
             }
