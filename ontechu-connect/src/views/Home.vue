@@ -212,19 +212,46 @@
                                 <v-card-text v-show="ShowAwards">
                                     <v-layout row>
                                         <v-flex xs2 justify-center>
-                                            <v-card flat class="text-xs-center">
-                                                <v-icon size="64" color="primary">add</v-icon>
-                                            </v-card>
+                                            <v-container fill-height>
+                                                <v-layout justify-center align-center>
+                                                    <v-flex shrink>
+                                                        <v-card flat class="text-xs-center">
+                                                            <v-icon size="64" color="primary">monetization_on</v-icon>
+                                                        </v-card>
+                                                    </v-flex>
+                                                </v-layout>
+                                            </v-container>
                                         </v-flex>
                                         <v-flex xs10>
                                             <v-card flat>
                                                 <v-card-text>
-                                                    The university has many resources available to help you when you are
-                                                    not OK.
+                                                    <ul>
+                                                        <li>Graduate students are encouraged to apply for <strong>funding opportunities</strong>. Please visit the School of Graduate and Postdoctoral Studies website for information on:</li>
+                                                        <ul type="circle">
+                                                            <li><a target="_blank" href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/index.php">External awards</a></li>
+                                                            <li><a target="_blank" href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/donor-awards/index.php">Donor awards</a></li>
+                                                            <li><a target="_blank" href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/other-external-awards.php">Other awards</a></li>
+                                                            <li><a target="_blank" href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/scholarship_resources/index.php">Scholarship resources</a></li>
+                                                        </ul>
+                                                    </ul>
+                                                    <ul>
+                                                        <li><strong><a target="_blank" href="https://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/sample-research-proposals.php">Sample research proposals</a></strong>: Some of our graduate students who have won external awards have provided copies of their research proposals. SGPS thanks them for providing these samples of winning proposals for other students to learn from.</li>
+                                                    </ul>
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-spacer></v-spacer>
-                                                    <v-btn flat color="accent">HELP</v-btn>
+                                                    <v-btn href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/index.php"
+                                                           target="_blank" outline color="accent">External awards
+                                                    </v-btn>
+                                                    <v-btn href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/donor-awards/index.php"
+                                                           target="_blank" outline color="accent">Donor awards
+                                                    </v-btn>
+                                                    <v-btn href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/other-external-awards.php"
+                                                           target="_blank" outline color="accent">Other awards
+                                                    </v-btn>
+                                                    <v-btn href="http://gradstudies.uoit.ca/current_students/student_finances/graduate_student_funding/external_awards/scholarship_resources/index.php"
+                                                           target="_blank" outline color="accent">Scholarship resources
+                                                    </v-btn>
                                                 </v-card-actions>
                                             </v-card>
                                         </v-flex>
@@ -415,20 +442,31 @@
                                 <v-card-text v-show="ShowContact">
                                     <v-layout row>
                                         <v-flex xs2 justify-center>
-                                            <v-card flat class="text-xs-center">
-                                                <v-icon size="64" color="primary">add</v-icon>
-                                            </v-card>
+                                            <v-container fill-height>
+                                                <v-layout justify-center align-center>
+                                                    <v-flex shrink>
+                                                        <v-card flat class="text-xs-center">
+                                                            <v-icon size="64" color="primary">phone</v-icon>
+                                                        </v-card>
+                                                    </v-flex>
+                                                </v-layout>
+                                            </v-container>
                                         </v-flex>
                                         <v-flex xs10>
                                             <v-card flat>
                                                 <v-card-text>
-                                                    The university has many resources available to help you when you are
-                                                    not OK.
+                                                    <p><strong>School of Graduate and Postdoctoral Studies</strong></p>
+                                                    <p>Campus Corners, Suite 1400<br>
+                                                        2000 Simcoe Street North<br>
+                                                        Oshawa, Ontario L1G 0C5<br>
+                                                        Canada<br>
+                                                        <br>
+                                                        905.721.8668 ext. 6209<br>
+                                                        905.721.3062 (fax)<br>
+                                                        <a title="gradstudies@uoit.ca" href="mailto:gradstudies@uoit.ca">gradstudies@uoit.ca</a> &nbsp; <br>
+                                                        <a target="_blank" href="http://www.gradstudies.uoit.ca/">gradstudies.uoit.ca</a></p>
+                                                    <p>The School of Graduate and Postdoctoral Studies is open Monday to Friday, 8:30 a.m. to 4:30 p.m. (September to May) and Monday to Friday, 8 a.m. to 4 p.m. (June to August).</p>
                                                 </v-card-text>
-                                                <v-card-actions>
-                                                    <v-spacer></v-spacer>
-                                                    <v-btn flat color="accent">HELP</v-btn>
-                                                </v-card-actions>
                                             </v-card>
                                         </v-flex>
                                     </v-layout>
