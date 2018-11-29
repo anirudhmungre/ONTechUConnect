@@ -11,7 +11,7 @@ router.post('/all', (req, res) => {
         scID: req.body.scid,
         depName: req.body.depName
     }
-    sql.query(`SELECT C.* FROM Courses AS C, Department AS D, Faculty AS F WHERE C.departmentID=D.dID AND D.facultyID=F.fID AND D.name=${con.escape(post.depName)} AND F.schoolID=${con.escape(post.scID)}`,
+    sql.query(`SELECT C.* FROM Course AS C, Department AS D, Faculty AS F WHERE C.departmentID=D.dID AND D.facultyID=F.fID AND D.name=${con.escape(post.depName)} AND F.schoolID=${con.escape(post.scID)}`,
         (results, fields) => {
                 return res.json(resp.make()
                     .setMessage("Query successful Student!")
