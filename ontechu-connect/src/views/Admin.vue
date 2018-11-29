@@ -34,7 +34,7 @@
                     <v-data-table :headers="twoHeader" :items="twoData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.name }}</td>
-                        <td class="text-xs-right">{{ props.item.numStudents }}</td>
+                        <td class="text-xs-centre">{{ props.item.numStudents }}</td>
                       </template>
                     </v-data-table>
                   </v-card-text>
@@ -57,9 +57,9 @@
                     <v-data-table :headers="fourHeader" :items="fourData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.studentID }}</td>
-                        <td class="text-xs-right">{{ props.item.Student }}</td>
-                        <td class="text-xs-right">{{ props.item.School }}</td>
-                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
+                        <td class="text-xs-centre">{{ props.item.Student }}</td>
+                        <td class="text-xs-centre">{{ props.item.School }}</td>
+                        <td class="text-xs-centre">{{ props.item.schoolID }}</td>
                       </template>
                     </v-data-table>
                   </v-card-text>
@@ -71,7 +71,7 @@
                     <v-data-table :headers="fiveHeader" :items="fiveData" class="elevation-1">
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.name }}</td>
-                        <td class="text-xs-right">{{ props.item.NumOfClasses }}</td>
+                        <td class="text-xs-centre">{{ props.item.NumofClasses }}</td>
                       </template>
                     </v-data-table>
                   </v-card-text>
@@ -82,9 +82,8 @@
                   <v-card-text>
                     <v-data-table :headers="sixHeader" :items="sixData" class="elevation-1">
                       <template slot="items" slot-scope="props">
-                        <td>{{ props.item.prof }}</td>
-                        <td class="text-xs-right">{{ props.item.course }}</td>
-                        <td class="text-xs-right">{{ props.item.schoolID }}</td>
+                        <td class="text-xs-centre">{{ props.item.Instructor }}</td>
+                        <td class="text-xs-centre">{{ props.item.schoolID }}</td>
                       </template>
                     </v-data-table>
                     Number of profs: {{numProfs}}
@@ -148,7 +147,7 @@ export default {
         admin: sessionstorage.getItem("admin")
       })
       .then(response => {
-        this.twoHeader = response.data.data.fields;
+        this.twoHeader = response.data.data.fields.map(x => ({text: x.name, value: x.name}) );
         this.twoData = response.data.data.table;
       })
       .catch(error => {
@@ -161,7 +160,7 @@ export default {
         admin: sessionstorage.getItem("admin")
       })
       .then(response => {
-        this.threeHeader = response.data.data.fields;
+        this.threeHeader = response.data.data.fields.map(x => ({text: x.name, value: x.name}) );
         this.threeData = response.data.data.table;
       })
       .catch(error => {
@@ -174,7 +173,7 @@ export default {
         admin: sessionstorage.getItem("admin")
       })
       .then(response => {
-        this.fourHeader = response.data.data.fields;
+        this.fourHeader = response.data.data.fields.map(x => ({text: x.name, value: x.name}) );
         this.fourData = response.data.data.table;
       })
       .catch(error => {
@@ -188,7 +187,7 @@ export default {
         scid: sessionstorage.getItem("scid")
       })
       .then(response => {
-        this.fiveHeader = response.data.data.fields;
+        this.fiveHeader = response.data.data.fields.map(x => ({text: x.name, value: x.name}) );
         this.fiveData = response.data.data.table;
       })
       .catch(error => {
@@ -202,8 +201,7 @@ export default {
         scid: sessionstorage.getItem("scid")
       })
       .then(response => {
-        console.log(response)
-        this.sixHeader = response.data.data.fields;
+        this.sixHeader = response.data.data.fields_pnames.map(x => ({text: x.name, value: x.name}) );
         this.sixData = response.data.data.profs;
         this.numProfs = response.data.data.num;
       })

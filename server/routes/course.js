@@ -266,11 +266,11 @@ router.post('/admin/school/numprofs', (req, res) => {
             sql.query(`SELECT * FROM allProfs WHERE schoolID = ${con.escape(post.scID)}`,
             (results_pnames, fields_pnames) => {
                 if (post.admin){
-                    return res.json(resp.make()
+                    return res.json(resp.make() 
                         .setMessage("Query successful Admin!")
                         .setResponseCode(200)
                         .setData({fields_pnames,
-                            num: results_pnum[0].NumInstructors,
+                            num: results_pnum[0].numInstructors,
                             profs: results_pnames})
                     )
                 }
