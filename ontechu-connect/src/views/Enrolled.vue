@@ -12,12 +12,13 @@
               <v-slide-y-transition>
                 <v-card-text>
                   <v-layout row>
-                    <v-data-table :headers="header" :items="data" class="elevation-1">
+                    <v-data-table :headers="header" :items="data" class="elevation-1" hide-actions>
                       <template slot="items" slot-scope="props">
                         <td>{{ props.item.sID }}</td>
                         <td class="text-xs-centre">{{ props.item.Student_Name }}</td>
                         <td class="text-xs-centre">{{ props.item.email }}</td>
                         <td class="text-xs-centre">{{ props.item.ceID }}</td>
+                        <td class="text-xs-centre">{{ props.item.nName }}</td>
                         <td class="text-xs-centre">{{ props.item.cCode }}</td>
                         <td class="text-xs-centre">{{ props.item.Course_Name }}</td>
                         <td class="text-xs-centre">{{ props.item.type }}</td>
@@ -50,7 +51,9 @@ export default {
     }
   },
   mounted() {
+      console.log(axios)
       axios
+
         .post("/student/ecourses", {
             sid: sessionstorage.getItem("sid")
         })
