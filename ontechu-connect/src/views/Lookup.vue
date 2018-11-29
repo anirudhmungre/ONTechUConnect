@@ -151,10 +151,11 @@ import sessionstorage from "sessionstorage"
     },
     methods: {
         lookupCourses() {
+          let context = this
             axios
             .post("/all", {
                 scid:  sessionstorage.getItem('scid'), 
-                depName: seldepartment
+                depName: context.seldepartment
 
             })
             .then(response => {
