@@ -188,7 +188,6 @@ export default {
         scid: sessionstorage.getItem("scid")
       })
       .then(response => {
-          console.log(response)
         this.fiveHeader = response.data.data.fields;
         this.fiveData = response.data.data.table;
       })
@@ -198,11 +197,12 @@ export default {
       });
 
     axios
-      .post("/admin/school/numprofs", {
+      .post("admin/school/numprofs", {
         admin: sessionstorage.getItem("admin"),
         scid: sessionstorage.getItem("scid")
       })
       .then(response => {
+        console.log(response)
         this.sixHeader = response.data.data.fields;
         this.sixData = response.data.data.profs;
         this.numProfs = response.data.data.num;

@@ -269,7 +269,7 @@ router.post('/admin/school/numprofs', (req, res) => {
                     return res.json(resp.make()
                         .setMessage("Query successful Admin!")
                         .setResponseCode(200)
-                        .setData({fields,
+                        .setData({fields_pnames,
                             num: results_pnum[0].NumInstructors,
                             profs: results_pnames})
                     )
