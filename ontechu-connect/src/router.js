@@ -60,6 +60,16 @@ export default new Router({
             path: '/logout',
             name: 'logout',
             component: () => import('./views/Logout.vue')
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: () => import('./views/RegisterQueueWaitlist.vue')
+        },
+        {
+            path: '/courses/register',
+            name: 'register',
+            component: () => import('./views/RegisterQueueWaitlist.vue')
         }
     ]
 })

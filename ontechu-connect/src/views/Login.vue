@@ -166,7 +166,7 @@
         }),
         mounted() {
             if (sessionstorage.getItem('sid')) {
-                this.$router.push('/dashboard')
+                this.$router.push('/dashboard/home')
             }
         },
         methods: {
