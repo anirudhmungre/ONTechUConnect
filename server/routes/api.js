@@ -6,6 +6,7 @@ const { OurSQL } = require('../components/oursql')
 const sql = new OurSQL()
 const con = sql.getConnection()
 
+// Root api directory
 router.get('/', (req, res) => {
     return res.json(resp.make()
         .setError(null)
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
     )
 })
 
+// Test to make sure api is working
 router.get('/test', (req, res) => {
     return res.json(resp.make()
         .setError(null)
@@ -26,6 +28,8 @@ router.get('/test', (req, res) => {
     )
 })
 
+// Authentication for user login
+// Receives hashed pass and checks against user in table
 router.post('/auth', (req, res) => {
 
     let post = {
