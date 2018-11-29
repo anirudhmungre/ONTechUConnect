@@ -176,7 +176,6 @@
                 { icon: 'perm_contact_calendar', title: 'Enrolled Courses', url: '/dashboard/courses/enrolled', admin: false },
                 { icon: 'class', title: 'Course Lookup', url: '/dashboard/courses/lookup', admin: false },
                 { icon: 'school', title: 'Register for Courses', url: '/register', admin: false },
-                { icon: 'class', title: 'Active Courses', url: '/dashboard/active', admin: false },
                 { icon: 'supervisor_account', title: 'Admin', url: '/dashboard/admin', admin: true }
             ]
         }),
