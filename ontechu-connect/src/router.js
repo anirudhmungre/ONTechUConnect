@@ -69,7 +69,7 @@ export default new Router({
         {
             path: '/courses/register',
             name: 'register',
-            component: () => import('./views/RegisterQueueWaitlist.vue')
+            component: () => import('./views/Register.vue')
         }
     ]
 })

@@ -169,18 +169,21 @@
         data: () => ({
             drawer: null,
             admin: false,
-            name: 'Ratmiro',
+            name: '',
             userMenu: null,
             items: [
                 { icon: 'home', title: 'Home', url: '/dashboard/home', admin: false },
                 { icon: 'perm_contact_calendar', title: 'Enrolled Courses', url: '/dashboard/courses/enrolled', admin: false },
                 { icon: 'class', title: 'Course Lookup', url: '/dashboard/courses/lookup', admin: false },
+                { icon: 'school', title: 'Register for Courses', url: '/register', admin: false },
+                { icon: 'class', title: 'Active Courses', url: '/dashboard/active', admin: false },
                 { icon: 'supervisor_account', title: 'Admin', url: '/dashboard/admin', admin: true }
             ]
         }),
         mounted() {
             if (sessionstorage.getItem('sid')) {
                 this.admin = sessionstorage.getItem('admin')
+                this.name = sessionstorage.getItem('name')
             } else {
                 this.$router.push('/login')
             }
