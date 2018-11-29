@@ -39,7 +39,7 @@
 
         <v-btn
           color="primary"
-          @click="e1 = 2"
+          @click="loadDepartments"
         >
           Search
         </v-btn>
@@ -73,7 +73,7 @@
 
         <v-btn
           color="primary"
-          @click="e1 = 3; lookupCourses"
+          @click="lookupCourses"
         >
           Search
         </v-btn>
@@ -128,6 +128,7 @@ import sessionstorage from "sessionstorage"
         e1: 0,
         selfaculty: null,
         seldepartment: null,
+        depAndFaculty: [],
         departments: [],
         faculties: [],
         courses: []
@@ -140,9 +141,15 @@ import sessionstorage from "sessionstorage"
                 scid: sessionstorage.getItem('scid')
             })
             .then(response => {
-                response.data.data.foreach(element => {
-                    context.departments.push({department: element.Department, faculty: element.Faculty})
+                response.data.data.forEach(element => {
+                    context.depAndFaculty.push({department: element.Department, faculty: element.Faculty})
                 })
+                context.depAndFaculty.forEach(element => {
+                  context.faculties.push(element.faculty)
+                })
+                console.log(context.departments)
+                console.log(context.faculties)
+                console.log(context.depAndFaculty)
             })
             .catch(error => {
                 // eslint-disable-next-line
@@ -151,6 +158,7 @@ import sessionstorage from "sessionstorage"
     },
     methods: {
         lookupCourses() {
+          this.e1 = 3
           let context = this
             axios
             .post("/all", {
@@ -159,7 +167,8 @@ import sessionstorage from "sessionstorage"
 
             })
             .then(response => {
-                response.data.data.foreach(element => {
+              console.log(response.data.data)
+                response.data.data.forEach(element => {
                     context.courses.push(element.name)
                 })
             })
@@ -167,6 +176,15 @@ import sessionstorage from "sessionstorage"
                 // eslint-disable-next-line
                 console.error(error);
             })
+        },
+        loadDepartments() {
+          console.log("fuck")
+          this.e1 = 2
+          for (let i = 0; i < this.depAndFaculty.length; i++) {
+            if(this.depAndFaculty[i].faculty ===  this.selfaculty) {
+                this.departments.push(this.depAndFaculty[i].department)
+            }
+          }
         }
     }
   }
