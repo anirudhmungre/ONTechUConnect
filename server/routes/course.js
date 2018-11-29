@@ -15,7 +15,7 @@ router.post('/student/ecourses', (req, res) => {
             return res.json(resp.make()
                 .setMessage("Query successful!")
                 .setResponseCode(200)
-                .setData(results)
+                .setData(results, fields)
             )
         }, (error) => {
             if (error) {
